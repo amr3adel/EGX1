@@ -357,6 +357,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`[EGX-Server] Server is running on port ${PORT}`);
-});
+// Conditionally listen if not run on Vercel
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`[EGX-Server] Server is running on port ${PORT}`);
+  });
+}
+
+export default app;

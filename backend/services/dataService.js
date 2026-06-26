@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 
-const CACHE_FILE = path.resolve('cache.json');
+const CACHE_FILE = process.env.VERCEL 
+  ? path.join('/tmp', 'cache.json') 
+  : path.resolve('cache.json');
 
 // List of EGX 30 constituents with static details, sector, dividend yields, and advanced Egyptian market fundamentals
 export const EGX_30_STOCKS = [
